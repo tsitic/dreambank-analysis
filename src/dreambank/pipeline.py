@@ -25,6 +25,15 @@ from dreambank.analytics import (
     WordsByGender,
     WordsByGenderConfig,
 )
+
+from dreambank.analytics.extended_pipeline import (
+    run_aggression,
+    run_barb_sanders,
+    run_cooccurrence,
+    run_izzy_stability,
+    run_length_anger,
+    run_names_topics,
+)
 from dreambank.parsing import ParsedArchive, parse_html, read_archive, write_tables
 from dreambank.scraping.scraper import default_html_root
 
@@ -36,8 +45,13 @@ _EXPERIMENTS = (
     ("IzzyTopics", "темы"),
     ("GenderComparison", "сравнение по полу"),
     ("WordsByGender", "слова по полу"),
+    ("Aggression", "маркеры агрессии, Miami, MDE"),
+    ("LengthAnger", "длина и лексика гнева"),
+    ("IzzyStability", "устойчивость половин Izzy"),
+    ("Cooccurrence", "совместная встречаемость эмоций"),
+    ("BarbSanders", "Barb Sanders: половины и b vs b2"),
+    ("NamesTopics", "имена и темы"),
 )
-
 
 def results_root() -> Path:
     return Path(__file__).resolve().parent / "results"
@@ -144,6 +158,24 @@ def _execute(name: str, archive: ParsedArchive, output: Path, figures: Path) -> 
         words.analyze()
         words.to_csv(output / "words_by_gender.csv")
         _close(words.plot())
+        return
+    if name == "Aggression":
+        run_aggression(archive, output, figures)
+        return
+    if name == "LengthAnger":
+        run_length_anger(archive, output, figures)
+        return
+    if name == "IzzyStability":
+        run_izzy_stability(archive, output, figures)
+        return
+    if name == "Cooccurrence":
+        run_cooccurrence(archive, output, figures)
+        return
+    if name == "BarbSanders":
+        run_barb_sanders(archive, output, figures)
+        return
+    if name == "NamesTopics":
+        run_names_topics(archive, output, figures)
         return
     raise ValueError(f"Unknown experiment: {name}")
 
