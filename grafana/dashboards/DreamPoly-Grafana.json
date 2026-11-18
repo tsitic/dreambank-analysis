@@ -1,0 +1,1612 @@
+{
+  "uid": "dreambank-dreampoly",
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Агрегаты из notebooks/DreamPoly.ipynb на данных DreamBank. Возрастные группы и серии корпуса.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [
+    {
+      "targetBlank": true,
+      "title": "Архив DreamBank на Zenodo",
+      "type": "link",
+      "url": "https://zenodo.org/records/18159468"
+    }
+  ],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "panels": [],
+      "title": "Izzy · Возраст, лексика и темы",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Средняя частота слов категории NRC на 1000 токенов записи. Столбцы — возрастные группы Izzy.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#412329"
+                    },
+                    {
+                      "color": "#6b3033",
+                      "value": 4.587386503651025
+                    },
+                    {
+                      "color": "#913e37",
+                      "value": 9.17477300730205
+                    },
+                    {
+                      "color": "#bc593c",
+                      "value": 13.762159510953076
+                    },
+                    {
+                      "color": "#e6814c",
+                      "value": 18.3495460146041
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 71
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Категория NRC"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Категория NRC\",\"type\":\"string\"},{\"name\":\"12\",\"type\":\"number\"},{\"name\":\"13\",\"type\":\"number\"},{\"name\":\"14\",\"type\":\"number\"},{\"name\":\"15\",\"type\":\"number\"},{\"name\":\"16\",\"type\":\"number\"},{\"name\":\"17\",\"type\":\"number\"},{\"name\":\"18–21\",\"type\":\"number\"},{\"name\":\"22–25\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"anger\",\"fear\",\"anticipation\",\"trust\",\"surprise\",\"sadness\",\"disgust\",\"joy\"],[11.028197179472395,18.3128355193,8.587386073244865,20.018684253236206,5.859695081325265,13.160230219944557,14.072321538287385,17.17925737311604],[12.23587013957834,17.283868057647055,10.819499630622609,17.120298543773963,6.598727252755664,16.48610051149396,11.177717845538165,12.154133335576105],[10.604721659196457,13.889753213404566,10.94682199519308,22.936932518255126,4.163307366416474,13.33291166518825,9.622180149700435,10.58682386993306],[8.799760341462335,12.390279693028019,10.359528006362723,19.30764241769854,5.160622911366526,10.365285842816252,9.451712124996284,10.788599105685789],[8.30238317028743,10.98738587786087,11.829516577329859,17.748481240568637,4.919631331267396,10.942935097277783,8.409775934183847,11.207151346172564],[8.644829218651301,10.363448546937642,12.178383825255732,16.538135888935546,5.500337642520104,10.891387520417096,7.491503839015789,10.904529557097971],[8.571738233366078,10.328074957577527,13.660773143472188,15.694924734703395,6.500562010953302,10.98985372916716,7.775883938528825,11.627891543518475],[7.86282250614072,10.380277164200791,13.23414455286731,14.474501086105299,5.449273437795986,10.523052758094744,7.510331724776404,10.591684963944264]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Эмоциональная лексика по возрасту",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Оценка compound от −1 до 1. По X — начало возрастной группы, например 18 означает 18–21.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 3,
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Возраст (начало интервала)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Возраст (начало интервала)\",\"type\":\"number\"},{\"name\":\"VADER compound\",\"type\":\"number\"}]},\"data\":{\"values\":[[12,13,14,15,16,17,18,22],[-0.068778846153846,-0.230897005988024,-0.20036265060241,-0.047208719851577,-0.011755621301775,-0.068105533063428,-0.015669757174393,0.031755968169761]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Тональность · VADER",
+      "type": "xychart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Число токенов. По X — начало возрастной группы.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 0,
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Возраст (начало интервала)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 12
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Возраст (начало интервала)\",\"type\":\"number\"},{\"name\":\"Токенов\",\"type\":\"number\"}]},\"data\":{\"values\":[[12,13,14,15,16,17,18,22],[62.88461538461539,68.44910179640719,94.03212851405623,56.03525046382189,80.60591715976331,152.59109311740892,190.62545989698307,222.9389920424403]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Длина записи",
+      "type": "xychart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Средняя доля разных слов в скользящем окне из 50 токенов. По X — начало возрастной группы.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Возраст (начало интервала)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 12
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Возраст (начало интервала)\",\"type\":\"number\"},{\"name\":\"MATTR-50\",\"type\":\"number\"}]},\"data\":{\"values\":[[12,13,14,15,16,17,18,22],[0.744718650228059,0.746326140424298,0.746514279461529,0.745565099871802,0.742242362123347,0.741551544837245,0.745956134181182,0.754080620909593]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Словарь · MATTR-50",
+      "type": "xychart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Средний нормированный вес компонента NMF в каждой возрастной группе.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#202b48"
+                    },
+                    {
+                      "color": "#253a67",
+                      "value": 0.0732748644093726
+                    },
+                    {
+                      "color": "#2d5090",
+                      "value": 0.1465497288187452
+                    },
+                    {
+                      "color": "#386ab8",
+                      "value": 0.2198245932281178
+                    },
+                    {
+                      "color": "#4e8be2",
+                      "value": 0.2930994576374904
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 71
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Тема"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 6,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Тема\",\"type\":\"string\"},{\"name\":\"12\",\"type\":\"number\"},{\"name\":\"13\",\"type\":\"number\"},{\"name\":\"14\",\"type\":\"number\"},{\"name\":\"15\",\"type\":\"number\"},{\"name\":\"16\",\"type\":\"number\"},{\"name\":\"17\",\"type\":\"number\"},{\"name\":\"18–21\",\"type\":\"number\"},{\"name\":\"22–25\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"Диалоги\",\"Школа\",\"Воспоминание\",\"Семья и дом\",\"Фильмы\",\"Люди и действия\",\"Комнаты и здания\",\"Повторяющиеся имена\"],[0.116907561580425,0.15742619333376,0.052588399607832,0.112686694532017,0.057894316619025,0.309918179238769,0.17397899702662,0.018599658061552],[0.106181810405884,0.098230821011481,0.093479187638968,0.123564402732821,0.070083939693092,0.366374322046863,0.126422123844511,0.015663392626379],[0.105016156017831,0.170327014687226,0.064365299551244,0.139083586259369,0.078333196504319,0.288275601503348,0.141166946885991,0.013432198590673],[0.090142063369603,0.261977993033041,0.043820019876767,0.169820488938704,0.121735065338586,0.188968994735154,0.09570412165746,0.027831253050686],[0.139257973180129,0.109907346979913,0.035681424393001,0.183231296214852,0.133616104804556,0.162501688756447,0.114106440799471,0.121697724871632],[0.167939649160311,0.086376354551082,0.046463567876483,0.167565892142512,0.114594354322167,0.17526915614385,0.137735162432732,0.104055863370863],[0.225088495190635,0.038354956010641,0.041963934047552,0.144512138793054,0.134356519014315,0.209384455036702,0.171430148037944,0.034909353869158],[0.336539873095096,0.021929856490885,0.067304841537185,0.041627444684234,0.050920967664926,0.214051405825926,0.253381065787091,0.014244544914656]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Вес тем по возрасту",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 7,
+      "panels": [],
+      "title": "College · Длина, эмоции и слова",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "suffix: токенов"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 33
+      },
+      "id": 8,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "vertical",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Группа",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Группа\",\"type\":\"string\"},{\"name\":\"Токенов\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"Женщины\",\"Мужчины\"],[139.50943396226415,115.6375]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Средняя длина записи",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Средняя частота слов категории NRC на 1000 токенов по сериям college-f и college-m.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "suffix: / 1000"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 16,
+        "x": 8,
+        "y": 33
+      },
+      "id": 9,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "vertical",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Категория NRC",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Категория NRC\",\"type\":\"string\"},{\"name\":\"Женщины\",\"type\":\"number\"},{\"name\":\"Мужчины\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"anger\",\"fear\",\"anticipation\",\"trust\",\"surprise\",\"sadness\",\"disgust\",\"joy\"],[8.723408137595493,11.479839209000327,18.696318074847664,21.753961520954732,9.294079572394201,14.747772025508901,7.439369698652844,18.38169284606162],[10.293514820631662,13.22826765307573,21.058709249815777,24.64775893456486,11.196050487669671,13.058270777036762,5.950573686195485,18.775831860693867]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Эмоциональная лексика",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Число употреблений на 10 000 содержательных токенов. Выбраны 15 слов с наибольшей минимальной частотой в двух группах.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 10,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Слово",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Слово\",\"type\":\"string\"},{\"name\":\"Женщины\",\"type\":\"number\"},{\"name\":\"Мужчины\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"friend\",\"looked\",\"like\",\"remember\",\"went\",\"car\",\"got\",\"walked\",\"just\",\"woke\",\"house\",\"room\",\"started\",\"going\",\"know\"],[141.8352244696596,115.93487913172176,115.93487913172176,81.40108534780464,128.26837691169214,78.93438579181056,76.46768623581647,85.10113468179576,76.46768623581647,67.8342377898372,83.86778490379872,71.53428712382832,86.33448445979279,70.30093734583127,69.06758756783424],[115.60693641618496,111.16051578479325,100.78553431154587,103.7498147324737,80.03557136505114,87.44627241737068,80.03557136505114,69.66058989180377,68.17844968133986,87.44627241737068,66.69630947087595,63.732029049948125,63.732029049948125,62.249888839484214,59.28560841855639]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Слова, частые в обеих группах",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Положительная разность нормированных частот на 10 000 содержательных токенов.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 56
+      },
+      "id": 11,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Слово",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Слово\",\"type\":\"string\"},{\"name\":\"Женщины − мужчины\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"boyfriend\",\"went\",\"said\",\"think\",\"asked\",\"i'm\",\"friend\",\"place\",\"hand\",\"trying\",\"started\",\"long\"],[56.2365089229301,48.232805546641,40.63692836787846,36.232917273835966,32.0246846905738,30.791334912576758,26.228288053474643,25.143371656199925,24.656393175603487,22.872450610986157,22.602455409844666,22.18969361960941]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Относительно чаще у женщин",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Положительная разность нормированных частот на 10 000 содержательных токенов.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 56
+      },
+      "id": 12,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Слово",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Слово\",\"type\":\"string\"},{\"name\":\"Мужчины − женщины\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"night\",\"happened\",\"girlfriend\",\"store\",\"father\",\"large\",\"remember\",\"hit\",\"did\",\"recall\",\"woke\",\"kept\"],[30.6697730921576,29.653406593615507,27.4354974700883,24.492421817835098,24.47121704916048,22.480893589425516,22.348729384669056,21.99391510882909,21.53874378124459,21.24754381142848,19.612034627533475,19.299629889042755]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Относительно чаще у мужчин",
+      "type": "barchart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 68
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Izzy · Длина записи и лексика гнева",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "25 интервалов для 200 симуляций постоянной частоты. Наблюдаемый наклон логита по log(токенов): 1.506.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 0,
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 69
+      },
+      "id": 14,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "vertical",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Интервал",
+        "xTickLabelRotation": -45
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Интервал\",\"type\":\"string\"},{\"name\":\"Симуляции\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"1.562…1.578\",\"1.578…1.594\",\"1.594…1.609\",\"1.609…1.625\",\"1.625…1.641\",\"1.641…1.656\",\"1.656…1.672\",\"1.672…1.688\",\"1.688…1.703\",\"1.703…1.719\",\"1.719…1.735\",\"1.735…1.750\",\"1.750…1.766\",\"1.766…1.782\",\"1.782…1.797\",\"1.797…1.813\",\"1.813…1.828\",\"1.828…1.844\",\"1.844…1.860\",\"1.860…1.875\",\"1.875…1.891\",\"1.891…1.907\",\"1.907…1.922\",\"1.922…1.938\",\"1.938…1.954\"],[2,1,5,5,8,10,11,10,10,16,11,17,11,14,14,11,10,9,9,7,3,1,2,0,3]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Нулевые симуляции · наблюдаемый наклон 1.506",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Частота слов NRC anger. Показаны группы от 30 снов. По X — начало возрастной группы.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "suffix: / 1000"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Возраст (начало интервала)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 79
+      },
+      "id": 15,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Возраст (начало интервала)\",\"type\":\"number\"},{\"name\":\"100–199 токенов\",\"type\":\"number\"},{\"name\":\"200–500 токенов\",\"type\":\"number\"},{\"name\":\"50–99 токенов\",\"type\":\"number\"}]},\"data\":{\"values\":[[12,13,14,15,16,17,18,22],[null,null,9.622274541918312,7.955724662746454,7.60884246544505,8.71268404700797,8.859238259583384,7.871177071441447],[null,null,null,null,8.896128304723717,9.685051012864115,8.223563982982705,8.024224072672219],[null,12.622415669205658,11.492559304552822,9.562109025915996,8.645844590943478,8.00785676512805,8.182664510755059,7.334491410924532]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Лексика гнева при одинаковой длине записи",
+      "type": "xychart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 89
+      },
+      "id": 16,
+      "panels": [],
+      "title": "Miami и Barb Sanders · Сравнение серий",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Строгий словарь. Оценка доли и две границы 95% доверительного интервала Уилсона.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 10,
+        "x": 0,
+        "y": 90
+      },
+      "id": 17,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "vertical",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Серия",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Серия\",\"type\":\"string\"},{\"name\":\"Оценка\",\"type\":\"number\"},{\"name\":\"Нижняя граница 95% ДИ\",\"type\":\"number\"},{\"name\":\"Верхняя граница 95% ДИ\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"miami-home\",\"miami-lab\"],[23.391812865497073,19.708029197080293],[17.674513617751806,15.430706057823032],[30.278334285831747,24.822990886977202]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Miami · Сны с маркерами агрессии",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Разность частот NRC и границы 95% доверительного интервала, полученного блочным бутстрэпом.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 1,
+          "unit": "suffix: / 1000"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 14,
+        "x": 10,
+        "y": 90
+      },
+      "id": 18,
+      "options": {
+        "barWidth": 0.85,
+        "fillOpacity": 82,
+        "groupWidth": 0.74,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "vertical",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        },
+        "xField": "Категория NRC",
+        "xTickLabelRotation": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Категория NRC\",\"type\":\"string\"},{\"name\":\"Оценка\",\"type\":\"number\"},{\"name\":\"Нижняя граница 95% ДИ\",\"type\":\"number\"},{\"name\":\"Верхняя граница 95% ДИ\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"anger\",\"fear\",\"anticipation\",\"trust\",\"surprise\",\"sadness\",\"disgust\",\"joy\"],[0.131360100947413,-0.342236888244438,0.466053210898835,0.330488117800961,-0.648299003630093,0.268555777755207,0.244158703429823,0.150385941017308],[-0.874928465116172,-1.455199458711562,-0.736116784355613,-0.921535341429597,-1.370369270852279,-0.978562709137578,-0.714592361593161,-1.372835036388073],[1.074475541387193,0.755551109446508,1.644398557858948,1.577594956052428,0.106748859630302,1.524819663212857,1.176051666260378,1.573520292922532]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Barb Sanders · Разность b2 − b",
+      "type": "barchart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 100
+      },
+      "id": 19,
+      "panels": [],
+      "title": "Norms · Совместная встречаемость категорий NRC",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Отношение шансов Мантеля–Хэнзеля с поправкой на длину. Нейтральное значение — 1. Шкала одинакова для обеих матриц.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#366cb2"
+                    },
+                    {
+                      "color": "#354c73",
+                      "value": 0.5
+                    },
+                    {
+                      "color": "#303747",
+                      "value": 0.8
+                    },
+                    {
+                      "color": "#774139",
+                      "value": 1.25
+                    },
+                    {
+                      "color": "#bf5544",
+                      "value": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 71
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Категория NRC"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 101
+      },
+      "id": 20,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Категория NRC\",\"type\":\"string\"},{\"name\":\"anger\",\"type\":\"number\"},{\"name\":\"fear\",\"type\":\"number\"},{\"name\":\"anticipation\",\"type\":\"number\"},{\"name\":\"trust\",\"type\":\"number\"},{\"name\":\"surprise\",\"type\":\"number\"},{\"name\":\"sadness\",\"type\":\"number\"},{\"name\":\"disgust\",\"type\":\"number\"},{\"name\":\"joy\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"anger\",\"fear\",\"anticipation\",\"trust\",\"surprise\",\"sadness\",\"disgust\",\"joy\"],[null,6.315478542453326,1.69583015384357,1.217212912764909,1.437124186340541,6.47035964764579,4.789492311993479,1.852475462652232],[6.315478542453326,null,1.548667069044924,1.016290475952154,1.833092335276765,4.99393963913761,2.479644435518073,1.449664230849989],[1.69583015384357,1.548667069044924,null,6.636285958416407,4.982929676984178,1.104677361305555,1.709036551808724,6.535374723701697],[1.217212912764909,1.016290475952154,6.636285958416407,null,4.19855971090226,1.435469809493058,1.017224193612695,11.060773014757554],[1.437124186340541,1.833092335276765,4.982929676984178,4.19855971090226,null,1.295997265865758,2.435840722763252,3.109321560789494],[6.47035964764579,4.99393963913761,1.104677361305555,1.435469809493058,1.295997265865758,null,3.184215244893384,1.835359711764427],[4.789492311993479,2.479644435518073,1.709036551808724,1.017224193612695,2.435840722763252,3.184215244893384,null,1.764050375245068],[1.852475462652232,1.449664230849989,6.535374723701697,11.060773014757554,3.109321560789494,1.835359711764427,1.764050375245068,null]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Отношение шансов · norms-f",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Отношение шансов Мантеля–Хэнзеля с поправкой на длину. Нейтральное значение — 1. Шкала одинакова для обеих матриц.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byType",
+              "options": "number"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "#366cb2"
+                    },
+                    {
+                      "color": "#354c73",
+                      "value": 0.5
+                    },
+                    {
+                      "color": "#303747",
+                      "value": 0.8
+                    },
+                    {
+                      "color": "#774139",
+                      "value": 1.25
+                    },
+                    {
+                      "color": "#bf5544",
+                      "value": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 71
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Категория NRC"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 112
+      },
+      "id": 21,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Категория NRC\",\"type\":\"string\"},{\"name\":\"anger\",\"type\":\"number\"},{\"name\":\"fear\",\"type\":\"number\"},{\"name\":\"anticipation\",\"type\":\"number\"},{\"name\":\"trust\",\"type\":\"number\"},{\"name\":\"surprise\",\"type\":\"number\"},{\"name\":\"sadness\",\"type\":\"number\"},{\"name\":\"disgust\",\"type\":\"number\"},{\"name\":\"joy\",\"type\":\"number\"}]},\"data\":{\"values\":[[\"anger\",\"fear\",\"anticipation\",\"trust\",\"surprise\",\"sadness\",\"disgust\",\"joy\"],[null,8.44896626818931,1.061059105238155,0.775565098311401,2.793712608227976,3.896032975214247,5.538176170337838,1.429496808201464],[8.44896626818931,null,1.381499956991508,1.023621660379328,1.740478375514464,5.115921961630966,3.375001517229491,0.811502933295435],[1.061059105238155,1.381499956991508,null,3.774680238283934,1.933084165861334,1.069335737485241,3.690528625129853,5.817936957350358],[0.775565098311401,1.023621660379328,3.774680238283934,null,1.767351133382923,1.610155528563382,2.276483933626637,5.666212069553358],[2.793712608227976,1.740478375514464,1.933084165861334,1.767351133382923,null,1.721206978656112,2.97408653975398,2.329412796515695],[3.896032975214247,5.115921961630966,1.069335737485241,1.610155528563382,1.721206978656112,null,2.301988771666498,0.935433110613316],[5.538176170337838,3.375001517229491,3.690528625129853,2.276483933626637,2.97408653975398,2.301988771666498,null,2.602397048266805],[1.429496808201464,0.811502933295435,5.817936957350358,5.666212069553358,2.329412796515695,0.935433110613316,2.602397048266805,null]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Отношение шансов · norms-m",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 123
+      },
+      "id": 22,
+      "panels": [],
+      "title": "Izzy · Тематическая модель с именами и без",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "Средний нормированный вес темы в двух моделях. По X — начало возрастной группы.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Возраст (начало интервала)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 124
+      },
+      "id": 23,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Возраст (начало интервала)\",\"type\":\"number\"},{\"name\":\"С именами\",\"type\":\"number\"},{\"name\":\"Без имён\",\"type\":\"number\"}]},\"data\":{\"values\":[[12,13,14,15,16,17,18,22],[0.15742619333376,0.098230821011481,0.170327014687226,0.261977993033041,0.109907346979913,0.086376354551082,0.038354956010641,0.021929856490885],[0.217153675426834,0.170832705125064,0.199930379673757,0.196128463589541,0.132925575055591,0.121301976934439,0.051341783314166,0.048839449819363]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Вес темы «Школа» по возрасту",
+      "type": "xychart"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 134
+      },
+      "id": 24,
+      "panels": [],
+      "title": "Статистическая мощность · Минимальная обнаружимая разность",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "По X — базовая доля в процентах. По Y — минимальная обнаружимая разность при мощности 80%, α = 0,05.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "suffix: п.п."
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Базовая доля, %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 135
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Базовая доля, %\",\"type\":\"number\"},{\"name\":\"college-f / college-m\",\"type\":\"number\"},{\"name\":\"miami-home / miami-lab\",\"type\":\"number\"},{\"name\":\"norms-f / norms-m\",\"type\":\"number\"}]},\"data\":{\"values\":[[5.0,10.0,15.0,20.0,25.0],[8.922063338380863,11.2102269583285,12.727401343197378,13.808130784501166,14.582858505870119],[7.543764256166812,9.571172073177408,10.924895783378348,11.897257460742612,12.602237330441222],[4.5963314548323,5.976645104828108,6.912393397922352,7.596480197878659,8.104121260798495]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Дизайн-эффект 1",
+      "type": "xychart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "По X — базовая доля в процентах. По Y — минимальная обнаружимая разность при мощности 80%, α = 0,05.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "suffix: п.п."
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Базовая доля, %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 135
+      },
+      "id": 26,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Базовая доля, %\",\"type\":\"number\"},{\"name\":\"college-f / college-m\",\"type\":\"number\"},{\"name\":\"miami-home / miami-lab\",\"type\":\"number\"},{\"name\":\"norms-f / norms-m\",\"type\":\"number\"}]},\"data\":{\"values\":[[5.0,10.0,15.0,20.0,25.0],[11.450453692960693,14.161658079460926,15.93637392729751,17.180958265139896,18.05385504820643],[9.645383493164244,12.061437381575859,13.657541709754087,14.78948542031955,15.595995306041344],[5.812890080446902,7.476841971519674,8.597768769535232,9.411297558205547,10.00930243958709]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Дизайн-эффект 1,5",
+      "type": "xychart"
+    },
+    {
+      "datasource": {
+        "type": "grafana-testdata-datasource",
+        "uid": "${DS_DREAMPOLY}"
+      },
+      "description": "По X — базовая доля в процентах. По Y — минимальная обнаружимая разность при мощности 80%, α = 0,05.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "lineWidth": 2,
+            "pointSize": {
+              "fixed": 7
+            },
+            "show": "points+lines"
+          },
+          "decimals": 1,
+          "unit": "suffix: п.п."
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Базовая доля, %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 135
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "seriesMapping": "auto",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-testdata-datasource",
+            "uid": "${DS_DREAMPOLY}"
+          },
+          "rawFrameContent": "[{\"schema\":{\"refId\":\"A\",\"fields\":[{\"name\":\"Базовая доля, %\",\"type\":\"number\"},{\"name\":\"college-f / college-m\",\"type\":\"number\"},{\"name\":\"miami-home / miami-lab\",\"type\":\"number\"},{\"name\":\"norms-f / norms-m\",\"type\":\"number\"}]},\"data\":{\"values\":[[5.0,10.0,15.0,20.0,25.0],[13.712034996264244,16.750190940855404,18.715918412125696,20.07456090316987,21.007561968447327],[11.520852652781562,14.24292035414755,16.024106700474505,17.272674832182897,18.14781192255319],[6.887784949280139,8.782505431069083,10.051870847111093,10.967232544377733,11.634393985457319]]}}]",
+          "refId": "A",
+          "scenarioId": "raw_frame"
+        }
+      ],
+      "title": "Дизайн-эффект 2",
+      "type": "xychart"
+    }
+  ],
+  "schemaVersion": 42,
+  "tags": [
+    "DreamBank",
+    "DreamPoly"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "",
+  "title": "DreamPoly · Анализ сновидений",
+  "weekStart": "",
+  "__inputs": [
+    {
+      "name": "DS_DREAMPOLY",
+      "label": "TestData",
+      "description": "Источник для данных DreamPoly внутри панелей",
+      "type": "datasource",
+      "pluginId": "grafana-testdata-datasource",
+      "pluginName": "TestData"
+    }
+  ]
+}
